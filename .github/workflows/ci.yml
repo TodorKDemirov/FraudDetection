@@ -26,14 +26,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Check imports
-        run: |
-          python -c "from src.data.load_data import load_data"
-          python -c "from src.data.validate_data import validate_data"
-          python -c "from src.features.build_features import build_features"
-          python -c "from src.models.train import train_xgboost"
-          python -c "from src.models.evaluate import evaluate_model"
-
       - name: Run tests
         run: |
           pytest
