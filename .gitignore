@@ -12,7 +12,7 @@ venv/
 .pycharm/
 
 # Data
-data/
+/data/
 *.csv
 
 # MLflow
@@ -20,7 +20,7 @@ mlflow/mlflow.db
 mlflow/artifacts/
 
 # Models
-models/
+/models/
 
 # Logs
 *.log
