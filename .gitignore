@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Virtual environment
+.venv/
+venv/
+
+# IDE
+.idea/
+.pycharm/
+
+# Data
+data/
+*.csv
+
+# MLflow
+mlflow/mlflow.db
+mlflow/artifacts/
+
+# Models
+models/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

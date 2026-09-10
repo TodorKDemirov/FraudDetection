@@ -1,0 +1,60 @@
+services:
+
+  mlflow:
+    image: python:3.11-slim
+    container_name: fraud-detection-mlflow
+
+    volumes:
+      - ./mlflow:/mlflow
+
+    working_dir: /mlflow
+
+    command: >
+      sh -c "
+      pip install --no-cache-dir mlflow &&
+      mlflow server
+      --host 0.0.0.0
+      --port 5000
+      --allowed-hosts 'mlflow:5000,localhost:*,127.0.0.1:*'
+      --backend-store-uri sqlite:////mlflow/mlflow.db
+      --artifacts-destination /mlflow/artifacts
+      "
+
+    ports:
+      - "5000:5000"
+
+
+  register:
+    build: .
+
+    container_name: fraud-detection-register
+
+    depends_on:
+      - mlflow
+
+    volumes:
+      - ./models:/app/models
+
+    environment:
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+
+    command: >
+      sh -c "
+      sleep 5 &&
+      python src/register_model.py
+      "
+
+
+  api:
+    build: .
+
+    container_name: fraud-detection-api
+
+    depends_on:
+      - mlflow
+
+    ports:
+      - "8000:8000"
+
+    environment:
+      MLFLOW_TRACKING_URI: http://mlflow:5000
