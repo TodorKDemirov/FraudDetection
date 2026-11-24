@@ -70,9 +70,9 @@ The registered model is assigned the champion alias, which is used by the API to
 I used FastAPI to create an API for making predictions with the trained model.
 The API accepts transaction data, validates the input, applies the required feature engineering transformations and returns a prediction together with the estimated fraud probability.
 The main endpoints are:
-- GET / - Basic API status.
-- GET /health - Health check and model information.
-- POST /predict - Predicts whether a transaction is fraudulent.
+GET / - Basic API status.
+GET /health - Health check and model information.
+POST /predict - Predicts whether a transaction is fraudulent.
 
 The API also provides interactive documentation through Swagger UI.
 
